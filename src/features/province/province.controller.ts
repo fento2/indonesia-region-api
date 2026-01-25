@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { ProvinceQuery } from "./province.model";
 import ProvinceService from "./province.service";
 import { sendResponse } from "../../utils/sendResponse";
 import { HttpStatus } from "../../constants/httpStatus";
