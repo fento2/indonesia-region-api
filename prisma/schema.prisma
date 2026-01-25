@@ -7,20 +7,54 @@ datasource db {
   provider = "postgresql"
 }
 
-model Users {
-  id         String    @id
-  email      String    @unique
-  username   String    @unique
-  name       String
-  phone      String
-  gender     Gender
-  isVeridied DateTime?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime
-  password   String
+model Provinces {
+  id        String      @id @default(uuid())
+  code      String      @unique
+  name      String
+  regencies Regencies[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-enum Gender {
-  Male
-  Female
+model Regencies {
+  id         String      @id @default(uuid())
+  provinceId String
+  code       String      @unique
+  name       String
+  type       RegencyType
+  province   Provinces   @relation(fields: [provinceId], references: [id])
+  districts  Districts[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Districts {
+  id        String     @id @default(uuid())
+  regencyId String
+  code      String     @unique
+  name      String
+  regency   Regencies  @relation(fields: [regencyId], references: [id])
+  villages  Villages[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Villages {
+  id         String    @id @default(uuid())
+  districtId String
+  code       String    @unique
+  name       String
+  district   Districts @relation(fields: [districtId], references: [id])
+  postalCode String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RegencyType {
+  KABUPATEN
+  KOTA
 }

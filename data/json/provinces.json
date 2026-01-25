@@ -1,0 +1,154 @@
+[
+  {
+    "code": "11",
+    "province": "Aceh"
+  },
+  {
+    "code": "12",
+    "province": "Sumatera Utara"
+  },
+  {
+    "code": "13",
+    "province": "Sumatera Barat"
+  },
+  {
+    "code": "14",
+    "province": "Riau"
+  },
+  {
+    "code": "15",
+    "province": "Jambi"
+  },
+  {
+    "code": "16",
+    "province": "Sumatera Selatan"
+  },
+  {
+    "code": "17",
+    "province": "Bengkulu"
+  },
+  {
+    "code": "18",
+    "province": "Lampung"
+  },
+  {
+    "code": "19",
+    "province": "Kepulauan Bangka Belitung"
+  },
+  {
+    "code": "21",
+    "province": "Kepulauan Riau"
+  },
+  {
+    "code": "31",
+    "province": "Daerah Khusus Ibukota Jakarta"
+  },
+  {
+    "code": "32",
+    "province": "Jawa Barat"
+  },
+  {
+    "code": "33",
+    "province": "Jawa Tengah"
+  },
+  {
+    "code": "34",
+    "province": "Daerah Istimewa Yogyakarta"
+  },
+  {
+    "code": "35",
+    "province": "Jawa Timur"
+  },
+  {
+    "code": "36",
+    "province": "Banten"
+  },
+  {
+    "code": "51",
+    "province": "Bali"
+  },
+  {
+    "code": "52",
+    "province": "Nusa Tenggara Barat"
+  },
+  {
+    "code": "53",
+    "province": "Nusa Tenggara Timur"
+  },
+  {
+    "code": "61",
+    "province": "Kalimantan Barat"
+  },
+  {
+    "code": "62",
+    "province": "Kalimantan Tengah"
+  },
+  {
+    "code": "63",
+    "province": "Kalimantan Selatan"
+  },
+  {
+    "code": "64",
+    "province": "Kalimantan Timur"
+  },
+  {
+    "code": "65",
+    "province": "Kalimantan Utara"
+  },
+  {
+    "code": "71",
+    "province": "Sulawesi Utara"
+  },
+  {
+    "code": "72",
+    "province": "Sulawesi Tengah"
+  },
+  {
+    "code": "73",
+    "province": "Sulawesi Selatan"
+  },
+  {
+    "code": "74",
+    "province": "Sulawesi Tenggara"
+  },
+  {
+    "code": "75",
+    "province": "Gorontalo"
+  },
+  {
+    "code": "76",
+    "province": "Sulawesi Barat"
+  },
+  {
+    "code": "81",
+    "province": "Maluku"
+  },
+  {
+    "code": "82",
+    "province": "Maluku Utara"
+  },
+  {
+    "code": "91",
+    "province": "Papua"
+  },
+  {
+    "code": "92",
+    "province": "Papua Barat"
+  },
+  {
+    "code": "93",
+    "province": "Papua Selatan"
+  },
+  {
+    "code": "94",
+    "province": "Papua Tengah"
+  },
+  {
+    "code": "95",
+    "province": "Papua Pegunungan"
+  },
+  {
+    "code": "96",
+    "province": "Papua Barat Daya"
+  }
+]
