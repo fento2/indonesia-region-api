@@ -9,7 +9,7 @@ class ProvinceRouter {
   constructor() {
     this.initializeRouter();
   }
-  initializeRouter = (): void => {
+  private initializeRouter = (): void => {
     this.router.get(
       "/",
       validatorSchema(provinceSchema, "query"),

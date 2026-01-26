@@ -1,8 +1,8 @@
 import { z } from "zod";
 
-const includeEnum = z.enum(["regencies", "districts", "villages"]);
+const includeEnum = z.enum(["province", "districts", "villages"]);
 
-export const provinceSchema = z.object({
+export const regencySchema = z.object({
   search: z.string().min(1).optional(),
   sortOrder: z.enum(["asc", "desc"]).optional(),
   sortBy: z.enum(["name", "createdAt", "code"]).optional(),
@@ -20,4 +20,4 @@ export const provinceSchema = z.object({
     .pipe(z.array(includeEnum).optional()),
 });
 
-export type ProvinceQueryType = z.infer<typeof provinceSchema>;
+export type RegencyQueryType = z.infer<typeof regencySchema>;

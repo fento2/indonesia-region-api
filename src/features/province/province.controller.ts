@@ -5,6 +5,23 @@ import { HttpStatus } from "../../constants/httpStatus";
 
 class ProvinceController {
   private provinceService = new ProvinceService();
+
+  getProvinces = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const query = res.locals.data;
+      const data = await this.provinceService.getProvinces(query);
+      return sendResponse(
+        res,
+        "list province success",
+        HttpStatus.OK,
+        data.data,
+        data.meta,
+      );
+    } catch (error) {
+      next(error);
+    }
+  };
+
   getDetailProvince = async (
     req: Request,
     res: Response,
@@ -13,20 +30,17 @@ class ProvinceController {
     try {
       const query = res.locals.data;
       const data = await this.provinceService.getDetailProvince(query);
-      return sendResponse(res, "success", HttpStatus.OK, data);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  getProvinces = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const query = res.locals.data;
-      const data = await this.provinceService.getProvinces(query);
-      return sendResponse(res, "success", HttpStatus.OK, data);
+      return sendResponse(
+        res,
+        `detail province code: ${data.code} success`,
+        HttpStatus.OK,
+        data,
+        undefined,
+      );
     } catch (error) {
       next(error);
     }
   };
 }
+
 export default ProvinceController;

@@ -6,6 +6,7 @@ import { HttpStatus } from "./constants/httpStatus";
 import { errorCallback } from "./errors/errorCallback";
 import ProvinceRouter from "./features/province/province.router";
 import AppError from "./errors/appError";
+import RegencyRouter from "./features/regency/regency.router";
 
 const PORT = process.env.PORT || 8181;
 
@@ -30,8 +31,10 @@ class App {
     });
 
     const provinceRouter = new ProvinceRouter();
+    const regencyRouter = new RegencyRouter();
 
     this.app.use("/province", provinceRouter.getRouter());
+    this.app.use("/regency", regencyRouter.getRouter());
 
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       throw new AppError("route not found", HttpStatus.NOT_FOUND);
