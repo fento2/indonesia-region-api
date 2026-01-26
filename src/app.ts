@@ -13,7 +13,7 @@ import VillageRouter from "./features/village/village.router";
 const PORT = process.env.PORT || 8181;
 
 class App {
-  app = express();
+  private app = express();
 
   constructor() {
     this.configure();
