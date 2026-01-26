@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.districtSchema = void 0;
 const zod_1 = require("zod");
-const includeEnum = zod_1.z.enum(["regency", "province", "villages"]);
 exports.districtSchema = zod_1.z.object({
     search: zod_1.z.string().optional(),
     sortOrder: zod_1.z.enum(["asc", "desc"]).optional(),
@@ -18,6 +17,5 @@ exports.districtSchema = zod_1.z.object({
         if (!val)
             return undefined;
         return val.split(",").map((v) => v.trim());
-    })
-        .pipe(zod_1.z.array(includeEnum).optional()),
+    }),
 });

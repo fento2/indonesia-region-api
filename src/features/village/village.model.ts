@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-const includeEnum = z.enum(["district", "regency", "province"]);
-
 export const villageSchema = z.object({
   search: z.string().optional(),
   sortOrder: z.enum(["asc", "desc"]).optional(),
@@ -17,8 +15,7 @@ export const villageSchema = z.object({
     .transform((val) => {
       if (!val) return undefined;
       return val.split(",").map((v) => v.trim());
-    })
-    .pipe(z.array(includeEnum).optional()),
+    }),
 });
 
 export type VillageQueryType = z.infer<typeof villageSchema>;

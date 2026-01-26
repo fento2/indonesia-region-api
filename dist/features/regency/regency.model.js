@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.regencySchema = void 0;
 const zod_1 = require("zod");
 const prisma_1 = require("../../../generated/prisma");
-const includeEnum = zod_1.z.enum(["province", "districts", "villages"]);
 const type = zod_1.z
     .string()
     .optional()
@@ -33,6 +32,5 @@ exports.regencySchema = zod_1.z.object({
         if (!val)
             return undefined;
         return val.split(",").map((v) => v.trim());
-    })
-        .pipe(zod_1.z.array(includeEnum).optional()),
+    }),
 });

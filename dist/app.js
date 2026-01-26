@@ -3,8 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const httpStatus_1 = require("./constants/httpStatus");
@@ -26,7 +24,7 @@ class App {
             this.app.get("/", (req, res, next) => {
                 return res
                     .status(httpStatus_1.HttpStatus.OK)
-                    .send("<h1>Welcome to Indonesia Region API</h1>");
+                    .send(`Welcome to Indonesia Region API running in ${process.env.NODE_DEV}`);
             });
             const provinceRouter = new province_router_1.default();
             const regencyRouter = new regency_router_1.default();

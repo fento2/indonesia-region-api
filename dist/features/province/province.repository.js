@@ -49,7 +49,7 @@ class ProvinceRepository {
                     total,
                     page,
                     limit,
-                    toatlPage: Math.ceil(total / limit),
+                    totalPage: Math.ceil(total / limit),
                 },
             };
         });

@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { RegencyType } from "../../../generated/prisma";
 
-const includeEnum = z.enum(["province", "districts", "villages"]);
 const type = z
   .string()
   .optional()
@@ -31,8 +30,7 @@ export const regencySchema = z.object({
     .transform((val) => {
       if (!val) return undefined;
       return val.split(",").map((v) => v.trim());
-    })
-    .pipe(z.array(includeEnum).optional()),
+    }),
 });
 
 export type RegencyQueryType = z.infer<typeof regencySchema>;

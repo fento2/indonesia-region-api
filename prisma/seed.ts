@@ -1,8 +1,9 @@
 import path from "path";
 import fs from "fs";
 import { prisma } from "../src/configs/prisma";
-import { RegencyType } from "./generated";
+
 import { csv } from "csvtojson";
+import { RegencyType } from "../generated/prisma";
 
 //convert to json
 const convert = async () => {

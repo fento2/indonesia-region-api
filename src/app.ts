@@ -1,5 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import { HttpStatus } from "./constants/httpStatus";
@@ -13,7 +11,7 @@ import VillageRouter from "./features/village/village.router";
 const PORT = process.env.PORT || 8181;
 
 class App {
-  private app = express();
+  app = express();
 
   constructor() {
     this.configure();
@@ -29,7 +27,9 @@ class App {
     this.app.get("/", (req: Request, res: Response, next: NextFunction) => {
       return res
         .status(HttpStatus.OK)
-        .send("<h1>Welcome to Indonesia Region API</h1>");
+        .send(
+          `Welcome to Indonesia Region API running in ${process.env.NODE_DEV}`,
+        );
     });
 
     const provinceRouter = new ProvinceRouter();
