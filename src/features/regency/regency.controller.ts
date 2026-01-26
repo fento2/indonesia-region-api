@@ -1,18 +1,18 @@
-import { NextFunction, Request, Response } from "express";
 import RegencyService from "./regency.service";
 import { sendResponse } from "../../utils/sendResponse";
 import { HttpStatus } from "../../constants/httpStatus";
+import { ExpressCbFn } from "../../types/shared";
 
 class RegencyController {
   private regencyService = new RegencyService();
 
-  getRegecies = async (req: Request, res: Response, next: NextFunction) => {
+  getRegecies: ExpressCbFn = async (req, res, next) => {
     try {
       const query = res.locals.data;
       const regency = await this.regencyService.getRegencies(query);
       return sendResponse(
         res,
-        "success",
+        "list regencies success",
         HttpStatus.OK,
         regency.data,
         regency.meta,
@@ -22,15 +22,17 @@ class RegencyController {
     }
   };
 
-  getDetailRegency = async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => {
+  getDetailRegency: ExpressCbFn = async (req, res, next) => {
     try {
       const query = res.locals.data;
-      const regency = await this.regencyService.getDetailRegency(query);
-      sendResponse(res, "success", HttpStatus.OK, regency, undefined);
+      const data = await this.regencyService.getDetailRegency(query);
+      return sendResponse(
+        res,
+        `detail regency code: ${data.code} success`,
+        HttpStatus.OK,
+        data,
+        undefined,
+      );
     } catch (error) {
       next(error);
     }

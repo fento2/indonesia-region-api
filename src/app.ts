@@ -7,6 +7,8 @@ import { errorCallback } from "./errors/errorCallback";
 import ProvinceRouter from "./features/province/province.router";
 import AppError from "./errors/appError";
 import RegencyRouter from "./features/regency/regency.router";
+import DistrictRouter from "./features/district/district.router";
+import VillageRouter from "./features/village/village.router";
 
 const PORT = process.env.PORT || 8181;
 
@@ -32,9 +34,13 @@ class App {
 
     const provinceRouter = new ProvinceRouter();
     const regencyRouter = new RegencyRouter();
+    const districtRouter = new DistrictRouter();
+    const villageRouter = new VillageRouter();
 
     this.app.use("/province", provinceRouter.getRouter());
     this.app.use("/regency", regencyRouter.getRouter());
+    this.app.use("/district", districtRouter.getRouter());
+    this.app.use("/village", villageRouter.getRouter());
 
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       throw new AppError("route not found", HttpStatus.NOT_FOUND);

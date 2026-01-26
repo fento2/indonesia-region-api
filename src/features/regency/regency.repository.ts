@@ -9,6 +9,7 @@ class RegencyRepository {
       search,
       sortBy = "code",
       sortOrder = "asc",
+      type,
     } = params;
 
     const where: any = {};
@@ -27,13 +28,10 @@ class RegencyRepository {
             mode: "insensitive",
           },
         },
-        {
-          type: {
-            equals: search,
-          },
-        },
       ];
     }
+
+    if (type) where.type = type;
 
     const skip = (page - 1) * limit;
 
@@ -94,9 +92,10 @@ class RegencyRepository {
 
   getRegencyByCode = async (params: RegencyQueryType) => {
     const { code, include: includeQuery } = params;
+
     const include: any = includeQuery
       ? {
-          province: includeQuery.includes("province"),
+          province: includeQuery.includes("province") ? true : undefined,
           districts: includeQuery.includes("districts")
             ? {
                 include: {
@@ -106,15 +105,16 @@ class RegencyRepository {
                           code: "asc",
                         },
                       }
-                    : false,
+                    : undefined,
                 },
                 orderBy: {
                   code: "asc",
                 },
               }
-            : false,
+            : undefined,
         }
       : undefined;
+
     return prisma.regencies.findUnique({
       where: { code },
       include,

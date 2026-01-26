@@ -3,7 +3,7 @@ import { z } from "zod";
 const includeEnum = z.enum(["regencies", "districts", "villages"]);
 
 export const provinceSchema = z.object({
-  search: z.string().min(1).optional(),
+  search: z.string().optional(),
   sortOrder: z.enum(["asc", "desc"]).optional(),
   sortBy: z.enum(["name", "createdAt", "code"]).optional(),
   page: z.coerce.number().int().positive().optional(),

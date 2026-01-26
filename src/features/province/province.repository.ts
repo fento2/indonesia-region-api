@@ -5,7 +5,7 @@ class ProvinceRepository {
   getProvinces = async (params: ProvinceQueryType) => {
     const {
       page = 1,
-      limit = 38,
+      limit = 10,
       search,
       sortBy = "code",
       sortOrder = "asc",
@@ -69,15 +69,15 @@ class ProvinceRepository {
                             ? {
                                 orderBy: { code: "asc" },
                               }
-                            : false,
+                            : undefined,
                         },
                         orderBy: { code: "asc" },
                       }
-                    : false,
+                    : undefined,
                 },
                 orderBy: { code: "asc" },
               }
-            : false,
+            : undefined,
         }
       : undefined;
 

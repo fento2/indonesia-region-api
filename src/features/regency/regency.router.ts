@@ -5,7 +5,9 @@ import { regencySchema } from "./regency.model";
 
 class RegencyRouter {
   private router = Router();
+
   private regencyController = new RegencyController();
+
   constructor() {
     this.initializeRouter();
   }

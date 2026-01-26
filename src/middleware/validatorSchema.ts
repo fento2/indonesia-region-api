@@ -7,9 +7,7 @@ export const validatorSchema =
   (schema: ZodObject, type: "body" | "params" | "query" | "cookies") =>
   (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log("test", req[type]);
       const result = schema.safeParse(req[type]);
-      console.log(result);
 
       if (!result.success) {
         throw new AppError(result.error.issues as any, HttpStatus.BAD_REQUEST);

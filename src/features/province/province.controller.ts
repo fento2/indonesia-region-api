@@ -1,12 +1,12 @@
-import { NextFunction, Request, Response } from "express";
 import ProvinceService from "./province.service";
 import { sendResponse } from "../../utils/sendResponse";
 import { HttpStatus } from "../../constants/httpStatus";
+import { ExpressCbFn } from "../../types/shared";
 
 class ProvinceController {
   private provinceService = new ProvinceService();
 
-  getProvinces = async (req: Request, res: Response, next: NextFunction) => {
+  getProvinces: ExpressCbFn = async (req, res, next) => {
     try {
       const query = res.locals.data;
       const data = await this.provinceService.getProvinces(query);
@@ -22,19 +22,15 @@ class ProvinceController {
     }
   };
 
-  getDetailProvince = async (
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) => {
+  getDetailProvince: ExpressCbFn = async (req, res, next) => {
     try {
       const query = res.locals.data;
-      const data = await this.provinceService.getDetailProvince(query);
+      const province = await this.provinceService.getDetailProvince(query);
       return sendResponse(
         res,
-        `detail province code: ${data.code} success`,
+        `detail province code: ${province.code} success`,
         HttpStatus.OK,
-        data,
+        province,
         undefined,
       );
     } catch (error) {
