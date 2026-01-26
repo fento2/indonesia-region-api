@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { RegencyType } from "../../../prisma/generated";
+import { RegencyType } from "../../../generated/prisma";
 
 const includeEnum = z.enum(["province", "districts", "villages"]);
 const type = z

@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { PrismaClient } from "../../prisma/generated";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
+import { PrismaClient } from "../../generated/prisma";
 
 const isDev = process.env.NODE_ENV === "development";
 
