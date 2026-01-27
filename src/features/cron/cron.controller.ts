@@ -15,8 +15,6 @@ class CronController {
 
       const resDb = await prisma.$queryRaw`SELECT 1`;
 
-      console.log(resDb);
-
       return sendResponse(
         res,
         "DB pinged successfully",
