@@ -13,7 +13,7 @@ class CronController {
         throw new AppError("Unauthorized", HttpStatus.UNAUTHORIZED);
       }
 
-      const resDb = await prisma.$queryRaw`SELECT 1`;
+      await prisma.$queryRaw`SELECT 1`;
 
       return sendResponse(
         res,

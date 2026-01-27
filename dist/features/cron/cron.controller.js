@@ -24,8 +24,7 @@ class CronController {
                 if (!isVercelCron) {
                     throw new appError_1.default("Unauthorized", httpStatus_1.HttpStatus.UNAUTHORIZED);
                 }
-                const resDb = yield prisma_1.prisma.$queryRaw `SELECT 1`;
-                console.log(resDb);
+                yield prisma_1.prisma.$queryRaw `SELECT 1`;
                 return (0, sendResponse_1.sendResponse)(res, "DB pinged successfully", httpStatus_1.HttpStatus.OK, undefined, undefined);
             }
             catch (error) {
