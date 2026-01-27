@@ -1,21 +1,21 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "./src/index.ts",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/src/index.ts",
-            "headers": {
-                "Cache-Control": "no-cache, no-store, must-revalidate"
-            }
-        }
-    ],
-    "crons": [
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/src/index.ts",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate"
+      }
+    }
+  ],
+  "crons": [
     {
       "path": "/cron/keep-alive",
       "schedule": "0 * * * *"
