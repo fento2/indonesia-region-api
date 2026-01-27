@@ -57,8 +57,9 @@ class RegencyRepository {
                 },
             };
         });
-        this.getRegencyById = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { id, include: includeQuery } = params;
+        this.getDetailRegency = (params) => __awaiter(this, void 0, void 0, function* () {
+            const { id, code, include: includeQuery } = params;
+            const where = {};
             const include = includeQuery
                 ? {
                     province: includeQuery.includes("province"),
@@ -80,36 +81,14 @@ class RegencyRepository {
                         : false,
                 }
                 : undefined;
+            if (!code && !id)
+                return null;
+            if (id)
+                where.id = id;
+            else if (code)
+                where.code = code;
             return prisma_1.prisma.regencies.findUnique({
-                where: { id },
-                include,
-            });
-        });
-        this.getRegencyByCode = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { code, include: includeQuery } = params;
-            const include = includeQuery
-                ? {
-                    province: includeQuery.includes("province") ? true : undefined,
-                    districts: includeQuery.includes("districts")
-                        ? {
-                            include: {
-                                villages: includeQuery.includes("villages")
-                                    ? {
-                                        orderBy: {
-                                            code: "asc",
-                                        },
-                                    }
-                                    : undefined,
-                            },
-                            orderBy: {
-                                code: "asc",
-                            },
-                        }
-                        : undefined,
-                }
-                : undefined;
-            return prisma_1.prisma.regencies.findUnique({
-                where: { code },
+                where,
                 include,
             });
         });

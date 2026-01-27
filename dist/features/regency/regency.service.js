@@ -32,9 +32,7 @@ class RegencyService {
             if (!params.id && !params.code) {
                 throw new appError_1.default("unique value required (id or code)", httpStatus_1.HttpStatus.BAD_REQUEST);
             }
-            const data = params.id
-                ? yield this.regencyRepository.getRegencyById(params)
-                : yield this.regencyRepository.getRegencyByCode(params);
+            const data = yield this.regencyRepository.getDetailRegency(params);
             if (!data) {
                 throw new appError_1.default("regency not found", httpStatus_1.HttpStatus.NOT_FOUND);
             }

@@ -32,9 +32,7 @@ class ProvinceService {
             if (!params.id && !params.code) {
                 throw new appError_1.default("unique value required (id or code)", httpStatus_1.HttpStatus.BAD_REQUEST);
             }
-            const data = params.id
-                ? yield this.provinceRepository.getProvinceById(params)
-                : yield this.provinceRepository.getProvinceByCode(params);
+            const data = yield this.provinceRepository.getDetailProvince(params);
             if (!data) {
                 throw new appError_1.default("province not found", httpStatus_1.HttpStatus.NOT_FOUND);
             }

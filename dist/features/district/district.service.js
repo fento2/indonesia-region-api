@@ -32,9 +32,7 @@ class DistrictService {
             if (!params.id && !params.code) {
                 throw new appError_1.default("unique value required (id or code)", httpStatus_1.HttpStatus.BAD_REQUEST);
             }
-            const data = params.id
-                ? yield this.districtRepository.getDetailDistrictById(params)
-                : yield this.districtRepository.getDetailDistrictByCode(params);
+            const data = yield this.districtRepository.getDetailDistrict(params);
             if (!data) {
                 throw new appError_1.default("district not found", httpStatus_1.HttpStatus.NOT_FOUND);
             }

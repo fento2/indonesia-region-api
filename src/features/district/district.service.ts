@@ -31,9 +31,7 @@ class DistrictService {
       );
     }
 
-    const data = params.id
-      ? await this.districtRepository.getDetailDistrictById(params)
-      : await this.districtRepository.getDetailDistrictByCode(params);
+    const data = await this.districtRepository.getDetailDistrict(params);
 
     if (!data) {
       throw new AppError("district not found", HttpStatus.NOT_FOUND);

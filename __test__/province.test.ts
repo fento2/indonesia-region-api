@@ -198,9 +198,9 @@ describe("feature province test", () => {
     });
 
     //query id
-    it("GET /province/detail?id=69d124ff-704f-42bb-837d-b3d60d66b06f", async () => {
+    it("GET /province/detail?id=0f8c5224-3dc1-456a-81ea-44a61db311a5", async () => {
       const response = await request.get(
-        "/province/detail?id=69d124ff-704f-42bb-837d-b3d60d66b06f",
+        "/province/detail?id=0f8c5224-3dc1-456a-81ea-44a61db311a5",
       );
 
       expect(response.statusCode).toBe(HttpStatus.OK);
@@ -215,9 +215,9 @@ describe("feature province test", () => {
     });
 
     //query id, include
-    it("GET /province/detail?id=69d124ff-704f-42bb-837d-b3d60d66b06f&include=regencies,districts,villages", async () => {
+    it("GET /province/detail?id=0f8c5224-3dc1-456a-81ea-44a61db311a5&include=regencies,districts,villages", async () => {
       const response = await request.get(
-        "/province/detail?id=69d124ff-704f-42bb-837d-b3d60d66b06f&include=regencies,districts,villages",
+        "/province/detail?id=0f8c5224-3dc1-456a-81ea-44a61db311a5&include=regencies,districts,villages",
       );
 
       expect(response.statusCode).toBe(HttpStatus.OK);

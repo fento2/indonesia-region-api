@@ -55,8 +55,9 @@ class DistrictRepository {
                 },
             };
         });
-        this.getDetailDistrictByCode = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { code, include: includeQuery } = params;
+        this.getDetailDistrict = (params) => __awaiter(this, void 0, void 0, function* () {
+            const { code, id, include: includeQuery } = params;
+            const where = {};
             const include = includeQuery
                 ? {
                     regency: includeQuery.includes("regency")
@@ -69,39 +70,14 @@ class DistrictRepository {
                         : undefined,
                 }
                 : undefined;
+            if (!code && !id)
+                return null;
+            if (id)
+                where.id = id;
+            else if (code)
+                where.code = code;
             return yield prisma_1.prisma.districts.findUnique({
-                where: {
-                    code,
-                },
-                include,
-            });
-        });
-        this.getDetailDistrictById = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { id, include: includeQuery } = params;
-            const include = includeQuery
-                ? {
-                    regency: includeQuery.includes("regency")
-                        ? {
-                            include: includeQuery.includes("province")
-                                ? {
-                                    province: undefined,
-                                }
-                                : undefined,
-                        }
-                        : undefined,
-                    villages: includeQuery.includes("villages")
-                        ? {
-                            orderBy: {
-                                code: "asc",
-                            },
-                        }
-                        : undefined,
-                }
-                : undefined;
-            return yield prisma_1.prisma.districts.findUnique({
-                where: {
-                    id,
-                },
+                where,
                 include,
             });
         });

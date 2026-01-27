@@ -55,8 +55,11 @@ class DistrictRepository {
     };
   };
 
-  getDetailDistrictByCode = async (params: DistrictQueryType) => {
-    const { code, include: includeQuery } = params;
+  getDetailDistrict = async (params: DistrictQueryType) => {
+    const { code, id, include: includeQuery } = params;
+
+    const where: any = {};
+
     const include: any = includeQuery
       ? {
           regency: includeQuery.includes("regency")
@@ -71,40 +74,13 @@ class DistrictRepository {
         }
       : undefined;
 
-    return await prisma.districts.findUnique({
-      where: {
-        code,
-      },
-      include,
-    });
-  };
+    if (!code && !id) return null;
 
-  getDetailDistrictById = async (params: DistrictQueryType) => {
-    const { id, include: includeQuery } = params;
-    const include: any = includeQuery
-      ? {
-          regency: includeQuery.includes("regency")
-            ? {
-                include: includeQuery.includes("province")
-                  ? {
-                      province: undefined,
-                    }
-                  : undefined,
-              }
-            : undefined,
-          villages: includeQuery.includes("villages")
-            ? {
-                orderBy: {
-                  code: "asc",
-                },
-              }
-            : undefined,
-        }
-      : undefined;
+    if (id) where.id = id;
+    else if (code) where.code = code;
+
     return await prisma.districts.findUnique({
-      where: {
-        id,
-      },
+      where,
       include,
     });
   };

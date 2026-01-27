@@ -14,5 +14,11 @@
                 "Cache-Control": "no-cache, no-store, must-revalidate"
             }
         }
-    ]
+    ],
+    "crons": [
+    {
+      "path": "/cron/keep-alive",
+      "schedule": "0 * * * *"
+    }
+  ]
 }

@@ -29,9 +29,7 @@ class RegencyService {
       );
     }
 
-    const data = params.id
-      ? await this.regencyRepository.getRegencyById(params)
-      : await this.regencyRepository.getRegencyByCode(params);
+    const data = await this.regencyRepository.getDetailRegency(params);
 
     if (!data) {
       throw new AppError("regency not found", HttpStatus.NOT_FOUND);

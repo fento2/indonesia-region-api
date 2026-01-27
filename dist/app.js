@@ -12,6 +12,7 @@ const appError_1 = __importDefault(require("./errors/appError"));
 const regency_router_1 = __importDefault(require("./features/regency/regency.router"));
 const district_router_1 = __importDefault(require("./features/district/district.router"));
 const village_router_1 = __importDefault(require("./features/village/village.router"));
+const cron_router_1 = __importDefault(require("./features/cron/cron.router"));
 const PORT = process.env.PORT || 8181;
 class App {
     constructor() {
@@ -30,10 +31,12 @@ class App {
             const regencyRouter = new regency_router_1.default();
             const districtRouter = new district_router_1.default();
             const villageRouter = new village_router_1.default();
+            const cronRouter = new cron_router_1.default();
             this.app.use("/province", provinceRouter.getRouter());
             this.app.use("/regency", regencyRouter.getRouter());
             this.app.use("/district", districtRouter.getRouter());
             this.app.use("/village", villageRouter.getRouter());
+            this.app.use("/cron", cronRouter.getRouter());
             this.app.use((req, res, next) => {
                 throw new appError_1.default("route not found", httpStatus_1.HttpStatus.NOT_FOUND);
             });

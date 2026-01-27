@@ -66,8 +66,11 @@ class VillageRepository {
     };
   };
 
-  getVillageByCode = async (params: VillageQueryType) => {
-    const { code, include: includeQuery } = params;
+  getDetailVillage = async (params: VillageQueryType) => {
+    const { code, id, include: includeQuery } = params;
+
+    const where: any = {};
+
     const include: any = includeQuery
       ? {
           district: includeQuery.includes("district")
@@ -84,32 +87,13 @@ class VillageRepository {
         }
       : undefined;
 
-    return await prisma.villages.findUnique({
-      where: { code },
-      include,
-    });
-  };
+    if (!code && !id) return null;
 
-  getVillageById = async (params: VillageQueryType) => {
-    const { id, include: includeQuery } = params;
-    const include: any = includeQuery
-      ? {
-          district: includeQuery.includes("district")
-            ? {
-                include: {
-                  regency: includeQuery.includes("regency")
-                    ? includeQuery.includes("province")
-                      ? { include: { province: true } }
-                      : true
-                    : undefined,
-                },
-              }
-            : undefined,
-        }
-      : undefined;
+    if (id) where.id = id;
+    else if (code) where.code = code;
 
     return await prisma.villages.findUnique({
-      where: { id },
+      where,
       include,
     });
   };

@@ -11,7 +11,7 @@ class DistrictRouter {
   constructor() {
     this.initializeRouter();
   }
-  initializeRouter = (): void => {
+  private initializeRouter = (): void => {
     this.router.get(
       "/",
       validatorSchema(districtSchema, "query"),

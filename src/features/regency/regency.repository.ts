@@ -61,8 +61,11 @@ class RegencyRepository {
     };
   };
 
-  getRegencyById = async (params: RegencyQueryType) => {
-    const { id, include: includeQuery } = params;
+  getDetailRegency = async (params: RegencyQueryType) => {
+    const { id, code, include: includeQuery } = params;
+
+    const where: any = {};
+
     const include: any = includeQuery
       ? {
           province: includeQuery.includes("province"),
@@ -84,39 +87,14 @@ class RegencyRepository {
             : false,
         }
       : undefined;
-    return prisma.regencies.findUnique({
-      where: { id },
-      include,
-    });
-  };
 
-  getRegencyByCode = async (params: RegencyQueryType) => {
-    const { code, include: includeQuery } = params;
+    if (!code && !id) return null;
 
-    const include: any = includeQuery
-      ? {
-          province: includeQuery.includes("province") ? true : undefined,
-          districts: includeQuery.includes("districts")
-            ? {
-                include: {
-                  villages: includeQuery.includes("villages")
-                    ? {
-                        orderBy: {
-                          code: "asc",
-                        },
-                      }
-                    : undefined,
-                },
-                orderBy: {
-                  code: "asc",
-                },
-              }
-            : undefined,
-        }
-      : undefined;
+    if (id) where.id = id;
+    else if (code) where.code = code;
 
     return prisma.regencies.findUnique({
-      where: { code },
+      where,
       include,
     });
   };

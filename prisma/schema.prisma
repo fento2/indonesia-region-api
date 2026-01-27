@@ -55,6 +55,6 @@ model Villages {
 }
 
 enum RegencyType {
-  KABUPATEN
-  KOTA
+  Kabupaten
+  Kota
 }

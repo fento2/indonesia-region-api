@@ -53,8 +53,9 @@ class ProvinceRepository {
                 },
             };
         });
-        this.getProvinceByCode = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { code, include: includeQuery } = params;
+        this.getDetailProvince = (params) => __awaiter(this, void 0, void 0, function* () {
+            const { id, code, include: includeQuery } = params;
+            const where = {};
             const include = includeQuery
                 ? {
                     regencies: includeQuery.includes("regencies")
@@ -78,38 +79,14 @@ class ProvinceRepository {
                         : undefined,
                 }
                 : undefined;
+            if (!code && !id)
+                return null;
+            if (id)
+                where.id = id;
+            else if (code)
+                where.code = code;
             return yield prisma_1.prisma.provinces.findUnique({
-                where: { code },
-                include,
-            });
-        });
-        this.getProvinceById = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { include: includeQuery, id } = params;
-            const include = includeQuery
-                ? {
-                    regencies: includeQuery.includes("regencies")
-                        ? {
-                            include: {
-                                districts: includeQuery.includes("districts")
-                                    ? {
-                                        include: {
-                                            villages: includeQuery.includes("villages")
-                                                ? {
-                                                    orderBy: { code: "asc" },
-                                                }
-                                                : false,
-                                        },
-                                        orderBy: { code: "asc" },
-                                    }
-                                    : false,
-                            },
-                            orderBy: { code: "asc" },
-                        }
-                        : false,
-                }
-                : undefined;
-            return yield prisma_1.prisma.provinces.findUnique({
-                where: { id },
+                where,
                 include,
             });
         });

@@ -9,8 +9,8 @@ const type = z
 
     const upper = val.toUpperCase();
 
-    if (upper === "KOTA") return RegencyType.KOTA;
-    if (upper === "KABUPATEN" || upper === "KAB") return RegencyType.KABUPATEN;
+    if (upper === "KOTA") return RegencyType.Kota;
+    if (upper === "KABUPATEN" || upper === "KAB") return RegencyType.Kabupaten;
 
     return undefined;
   });

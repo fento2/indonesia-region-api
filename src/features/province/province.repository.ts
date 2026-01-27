@@ -55,8 +55,11 @@ class ProvinceRepository {
     };
   };
 
-  getProvinceByCode = async (params: ProvinceQueryType) => {
-    const { code, include: includeQuery } = params;
+  getDetailProvince = async (params: ProvinceQueryType) => {
+    const { id, code, include: includeQuery } = params;
+
+    const where: any = {};
+
     const include: any = includeQuery
       ? {
           regencies: includeQuery.includes("regencies")
@@ -81,40 +84,13 @@ class ProvinceRepository {
         }
       : undefined;
 
-    return await prisma.provinces.findUnique({
-      where: { code },
-      include,
-    });
-  };
+    if (!code && !id) return null;
 
-  getProvinceById = async (params: ProvinceQueryType) => {
-    const { include: includeQuery, id } = params;
-    const include: any = includeQuery
-      ? {
-          regencies: includeQuery.includes("regencies")
-            ? {
-                include: {
-                  districts: includeQuery.includes("districts")
-                    ? {
-                        include: {
-                          villages: includeQuery.includes("villages")
-                            ? {
-                                orderBy: { code: "asc" },
-                              }
-                            : false,
-                        },
-                        orderBy: { code: "asc" },
-                      }
-                    : false,
-                },
-                orderBy: { code: "asc" },
-              }
-            : false,
-        }
-      : undefined;
+    if (id) where.id = id;
+    else if (code) where.code = code;
 
     return await prisma.provinces.findUnique({
-      where: { id },
+      where,
       include,
     });
   };

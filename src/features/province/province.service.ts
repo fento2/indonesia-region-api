@@ -29,9 +29,7 @@ class ProvinceService {
       );
     }
 
-    const data = params.id
-      ? await this.provinceRepository.getProvinceById(params)
-      : await this.provinceRepository.getProvinceByCode(params);
+    const data = await this.provinceRepository.getDetailProvince(params);
 
     if (!data) {
       throw new AppError("province not found", HttpStatus.NOT_FOUND);

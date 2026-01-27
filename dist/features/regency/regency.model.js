@@ -11,9 +11,9 @@ const type = zod_1.z
         return undefined;
     const upper = val.toUpperCase();
     if (upper === "KOTA")
-        return prisma_1.RegencyType.KOTA;
+        return prisma_1.RegencyType.Kota;
     if (upper === "KABUPATEN" || upper === "KAB")
-        return prisma_1.RegencyType.KABUPATEN;
+        return prisma_1.RegencyType.Kabupaten;
     return undefined;
 });
 exports.regencySchema = zod_1.z.object({

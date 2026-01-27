@@ -30,9 +30,7 @@ class VillageService {
       );
     }
 
-    const data = params.id
-      ? await this.villageRepository.getVillageById(params)
-      : await this.villageRepository.getVillageByCode(params);
+    const data = await this.villageRepository.getDetailVillage(params);
 
     if (!data) {
       throw new AppError("village not found", HttpStatus.NOT_FOUND);

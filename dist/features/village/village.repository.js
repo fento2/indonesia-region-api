@@ -63,8 +63,9 @@ class VillageRepository {
                 },
             };
         });
-        this.getVillageByCode = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { code, include: includeQuery } = params;
+        this.getDetailVillage = (params) => __awaiter(this, void 0, void 0, function* () {
+            const { code, id, include: includeQuery } = params;
+            const where = {};
             const include = includeQuery
                 ? {
                     district: includeQuery.includes("district")
@@ -80,30 +81,14 @@ class VillageRepository {
                         : undefined,
                 }
                 : undefined;
+            if (!code && !id)
+                return null;
+            if (id)
+                where.id = id;
+            else if (code)
+                where.code = code;
             return yield prisma_1.prisma.villages.findUnique({
-                where: { code },
-                include,
-            });
-        });
-        this.getVillageById = (params) => __awaiter(this, void 0, void 0, function* () {
-            const { id, include: includeQuery } = params;
-            const include = includeQuery
-                ? {
-                    district: includeQuery.includes("district")
-                        ? {
-                            include: {
-                                regency: includeQuery.includes("regency")
-                                    ? includeQuery.includes("province")
-                                        ? { include: { province: true } }
-                                        : true
-                                    : undefined,
-                            },
-                        }
-                        : undefined,
-                }
-                : undefined;
-            return yield prisma_1.prisma.villages.findUnique({
-                where: { id },
+                where,
                 include,
             });
         });

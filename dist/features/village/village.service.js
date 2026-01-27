@@ -32,9 +32,7 @@ class VillageService {
             if (!params.id && !params.code) {
                 throw new appError_1.default("unique value required (id or code)", httpStatus_1.HttpStatus.BAD_REQUEST);
             }
-            const data = params.id
-                ? yield this.villageRepository.getVillageById(params)
-                : yield this.villageRepository.getVillageByCode(params);
+            const data = yield this.villageRepository.getDetailVillage(params);
             if (!data) {
                 throw new appError_1.default("village not found", httpStatus_1.HttpStatus.NOT_FOUND);
             }
