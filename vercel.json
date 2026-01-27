@@ -18,7 +18,7 @@
   "crons": [
     {
       "path": "/cron/keep-alive",
-      "schedule": "0 * * * *"
+      "schedule": "0 0 * * *"
     }
   ]
 }
