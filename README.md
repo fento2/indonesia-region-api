@@ -217,3 +217,7 @@ Base endpoints:
 
 ```
 
+⭐ Support This Project
+
+If you find this project useful, please consider giving it a star on GitHub 🌟
+It helps the project grow and motivates me to keep improving it.
