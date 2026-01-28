@@ -5,7 +5,7 @@ This API is built to help developers easily access Indonesian administrative reg
 
 ## Tech Stack
 
- Node, Express, Supabase, Prisma ORM
+ Node Js, Express Js, Supabase, Prisma ORM
 
 ## Installation
 
