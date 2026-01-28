@@ -5,3 +5,7 @@ export type ExpressCbFn<T = any> = (
   res: Response,
   next: NextFunction,
 ) => Promise<T> | T;
+
+export const result: any = {
+  documentation: `See documentation: ${process.env.DOCUMENTATION}`,
+};

@@ -1,4 +1,5 @@
 import { HttpStatus } from "../src/constants/httpStatus";
+import { homeTemplate } from "../src/template/homeTemplate";
 import { request } from "./testApp";
 
 describe("API implementation testing", () => {
@@ -7,9 +8,7 @@ describe("API implementation testing", () => {
     const response = await request.get("/");
 
     expect(response.status).toBe(HttpStatus.OK);
-    expect(response.text).toEqual(
-      `Welcome to Indonesia Region API running in ${process.env.NODE_DEV}`,
-    );
+    expect(response.text).toBe(homeTemplate());
   });
 
   it("GET /category should return NOT FOUND for un-exist route", async () => {

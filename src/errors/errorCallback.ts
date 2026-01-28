@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import AppError from "./appError";
 import { HttpStatus } from "../constants/httpStatus";
+import { result } from "../types/shared";
 
 export const errorCallback = (
   error: unknown,
@@ -12,6 +13,7 @@ export const errorCallback = (
     return res.status(error.httpStatus).json({
       result: {
         erorr: error.message,
+        ...result,
       },
     });
   }
@@ -19,6 +21,7 @@ export const errorCallback = (
   return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
     result: {
       error: message,
+      ...result,
     },
   });
 };

@@ -13,6 +13,7 @@ const regency_router_1 = __importDefault(require("./features/regency/regency.rou
 const district_router_1 = __importDefault(require("./features/district/district.router"));
 const village_router_1 = __importDefault(require("./features/village/village.router"));
 const cron_router_1 = __importDefault(require("./features/cron/cron.router"));
+const homeTemplate_1 = require("./template/homeTemplate");
 const PORT = process.env.PORT || 8181;
 class App {
     constructor() {
@@ -23,9 +24,7 @@ class App {
         };
         this.router = () => {
             this.app.get("/", (req, res, next) => {
-                return res
-                    .status(httpStatus_1.HttpStatus.OK)
-                    .send(`Welcome to Indonesia Region API running in ${process.env.NODE_DEV}`);
+                return res.status(httpStatus_1.HttpStatus.OK).send((0, homeTemplate_1.homeTemplate)());
             });
             const provinceRouter = new province_router_1.default();
             const regencyRouter = new regency_router_1.default();

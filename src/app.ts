@@ -8,6 +8,8 @@ import RegencyRouter from "./features/regency/regency.router";
 import DistrictRouter from "./features/district/district.router";
 import VillageRouter from "./features/village/village.router";
 import CronRouter from "./features/cron/cron.router";
+import { result } from "./types/shared";
+import { homeTemplate } from "./template/homeTemplate";
 
 const PORT = process.env.PORT || 8181;
 
@@ -26,11 +28,7 @@ class App {
   };
   private router = () => {
     this.app.get("/", (req: Request, res: Response, next: NextFunction) => {
-      return res
-        .status(HttpStatus.OK)
-        .send(
-          `Welcome to Indonesia Region API running in ${process.env.NODE_DEV}`,
-        );
+      return res.status(HttpStatus.OK).send(homeTemplate());
     });
 
     const provinceRouter = new ProvinceRouter();

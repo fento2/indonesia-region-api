@@ -6,8 +6,8 @@ export const districtSchema = z.object({
   sortBy: z.enum(["name", "createdAt", "code"]).optional(),
   page: z.coerce.number().int().positive().optional(),
   limit: z.coerce.number().int().positive().optional(),
-  code: z.string().min(1).optional(),
-  id: z.string().min(1).optional(),
+  code: z.string().optional(),
+  id: z.string().optional(),
   include: z
     .string()
     .optional()

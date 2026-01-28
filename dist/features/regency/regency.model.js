@@ -22,8 +22,8 @@ exports.regencySchema = zod_1.z.object({
     sortBy: zod_1.z.enum(["name", "createdAt", "code"]).optional(),
     page: zod_1.z.coerce.number().int().positive().optional(),
     limit: zod_1.z.coerce.number().int().positive().optional(),
-    code: zod_1.z.string().min(1).optional(),
-    id: zod_1.z.string().min(1).optional(),
+    code: zod_1.z.string().optional(),
+    id: zod_1.z.string().optional(),
     type,
     include: zod_1.z
         .string()
