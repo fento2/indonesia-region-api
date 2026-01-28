@@ -3,6 +3,9 @@ I just made an Indonesia Region API that provides structured data for provinces,
 
 This API is built to help developers easily access Indonesian administrative region data for learning purposes, personal projects, or production use.
 
+> Public Indonesia Region API for provinces, regencies, districts, and villages.
+> Free to use for learning, personal projects, and production.
+
 ## Tech Stack
 
 Node Js, Express Js, Supabase, Prisma ORM
