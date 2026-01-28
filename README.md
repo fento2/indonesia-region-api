@@ -48,12 +48,22 @@ To run this project, you will need to add the following environment variables to
 
 # API Reference
 
+Try it yourself:
+https://indonesia-region-api.vercel.app/province
+
 ## 1. Get List
 
 All list endpoints (`province`, `regency`, `district`, `village`) use the same query format and response structure.  
 You only need to change the endpoint name
 
 ---
+
+Base endpoints:
+- `/province`
+- `/regency`
+- `/district`
+- `/village`
+
 
 #### Query Parameters
 
@@ -72,7 +82,7 @@ You only need to change the endpoint name
 
 ### Example Request:
 ```http
-  GET /province?limit=5&page=1&sortBy=name&sortOrder=asc
+  GET https://indonesia-region-api.vercel.app/province?limit=5&page=1&sortBy=name&sortOrder=asc&search=sulawesi
 ```
 ##### Response body:
 ``` json
@@ -134,6 +144,13 @@ You only need to change the endpoint name.
 
 ---
 
+Base endpoints:
+- `/province/detail`
+- `/regency/deatail`
+- `/district/detail`
+- `/village/detail`
+
+
 #### Query Parameters
 
 | Query      | Type   | Required | Description                                                                 |
@@ -153,7 +170,7 @@ You only need to change the endpoint name.
 
 ### Example Request:
 ```http
-  GET /province/detail?code
+  GET https://indonesia-region-api.vercel.app/village/detail?code=8102192005&include=district,regency,province
 ```
 ##### Response body:
 ``` json
@@ -199,6 +216,4 @@ You only need to change the endpoint name.
 }
 
 ```
-
-
 
