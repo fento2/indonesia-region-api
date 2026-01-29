@@ -8,7 +8,6 @@ import RegencyRouter from "./features/regency/regency.router";
 import DistrictRouter from "./features/district/district.router";
 import VillageRouter from "./features/village/village.router";
 import CronRouter from "./features/cron/cron.router";
-import { result } from "./types/shared";
 import { homeTemplate } from "./template/homeTemplate";
 
 const PORT = process.env.PORT || 8181;
