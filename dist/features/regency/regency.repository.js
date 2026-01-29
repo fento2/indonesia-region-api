@@ -42,6 +42,12 @@ class RegencyRepository {
                     orderBy: {
                         [sortBy]: sortOrder,
                     },
+                    omit: {
+                        id: true,
+                        provinceId: true,
+                        createdAt: true,
+                        updatedAt: true,
+                    },
                 }),
                 yield prisma_1.prisma.regencies.count({
                     where,
@@ -60,27 +66,41 @@ class RegencyRepository {
         this.getDetailRegency = (params) => __awaiter(this, void 0, void 0, function* () {
             const { id, code, include: includeQuery } = params;
             const where = {};
-            const include = includeQuery
-                ? {
-                    province: includeQuery.includes("province"),
-                    districts: includeQuery.includes("districts")
-                        ? {
-                            include: {
-                                villages: includeQuery.includes("villages")
-                                    ? {
-                                        orderBy: {
-                                            code: "asc",
-                                        },
-                                    }
-                                    : false,
-                            },
-                            orderBy: {
-                                code: "asc",
-                            },
-                        }
-                        : false,
+            const include = {};
+            if (includeQuery) {
+                if (includeQuery.includes("province")) {
+                    include.province = {
+                        omit: {
+                            id: true,
+                            createdAt: true,
+                            updatedAt: true,
+                        },
+                    };
                 }
-                : undefined;
+                if (includeQuery.includes("districts")) {
+                    include.districts = {
+                        orderBy: { code: "asc" },
+                        omit: {
+                            id: true,
+                            regencyId: true,
+                            createdAt: true,
+                            updatedAt: true,
+                        },
+                        include: {},
+                    };
+                    if (includeQuery.includes("villages")) {
+                        include.districts.include.villages = {
+                            orderBy: { code: "asc" },
+                            omit: {
+                                id: true,
+                                districtId: true,
+                                createdAt: true,
+                                updatedAt: true,
+                            },
+                        };
+                    }
+                }
+            }
             if (!code && !id)
                 return null;
             if (id)
@@ -90,6 +110,12 @@ class RegencyRepository {
             return prisma_1.prisma.regencies.findUnique({
                 where,
                 include,
+                omit: {
+                    id: true,
+                    provinceId: true,
+                    createdAt: true,
+                    updatedAt: true,
+                },
             });
         });
     }

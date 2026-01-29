@@ -39,6 +39,11 @@ class ProvinceRepository {
         orderBy: {
           [sortBy]: sortOrder,
         },
+        omit: {
+          id: true,
+          createdAt: true,
+          updatedAt: true,
+        },
       }),
 
       await prisma.provinces.count({ where }),
@@ -60,29 +65,47 @@ class ProvinceRepository {
 
     const where: any = {};
 
-    const include: any = includeQuery
-      ? {
-          regencies: includeQuery.includes("regencies")
-            ? {
-                include: {
-                  districts: includeQuery.includes("districts")
-                    ? {
-                        include: {
-                          villages: includeQuery.includes("villages")
-                            ? {
-                                orderBy: { code: "asc" },
-                              }
-                            : undefined,
-                        },
-                        orderBy: { code: "asc" },
-                      }
-                    : undefined,
-                },
-                orderBy: { code: "asc" },
-              }
-            : undefined,
+    const include: any = {};
+
+    if (includeQuery) {
+      if (includeQuery.includes("regencies")) {
+        include.regencies = {
+          orderBy: { code: "asc" },
+          omit: {
+            id: true,
+            provinceId: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+          include: {},
+        };
+
+        if (includeQuery.includes("districts")) {
+          include.regencies.include.districts = {
+            orderBy: { code: "asc" },
+            omit: {
+              id: true,
+              regencyId: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+            include: {},
+          };
+
+          if (includeQuery.includes("villages")) {
+            include.regencies.include.districts.include.villages = {
+              orderBy: { code: "asc" },
+              omit: {
+                id: true,
+                districtId: true,
+                createdAt: true,
+                updatedAt: true,
+              },
+            };
+          }
         }
-      : undefined;
+      }
+    }
 
     if (!code && !id) return null;
 
@@ -92,6 +115,11 @@ class ProvinceRepository {
     return await prisma.provinces.findUnique({
       where,
       include,
+      omit: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+      },
     });
   };
 }

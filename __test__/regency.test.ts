@@ -13,13 +13,9 @@ describe("feture regency", () => {
       expect(Array.isArray(response.body.result.data)).toBe(true);
 
       expect(response.body.result.data[0]).toMatchObject({
-        id: expect.any(String),
-        provinceId: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
         type: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
       expect(response.body.result.meta).toMatchObject({
         total: expect.any(Number),
@@ -39,13 +35,9 @@ describe("feture regency", () => {
       expect(Array.isArray(response.body.result.data)).toBe(true);
 
       expect(response.body.result.data[0]).toMatchObject({
-        id: expect.any(String),
-        provinceId: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
         type: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
 
       expect(response.body.result.meta).toMatchObject({

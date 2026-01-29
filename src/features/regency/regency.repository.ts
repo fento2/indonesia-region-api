@@ -43,6 +43,12 @@ class RegencyRepository {
         orderBy: {
           [sortBy]: sortOrder,
         },
+        omit: {
+          id: true,
+          provinceId: true,
+          createdAt: true,
+          updatedAt: true,
+        },
       }),
 
       await prisma.regencies.count({
@@ -66,27 +72,44 @@ class RegencyRepository {
 
     const where: any = {};
 
-    const include: any = includeQuery
-      ? {
-          province: includeQuery.includes("province"),
-          districts: includeQuery.includes("districts")
-            ? {
-                include: {
-                  villages: includeQuery.includes("villages")
-                    ? {
-                        orderBy: {
-                          code: "asc",
-                        },
-                      }
-                    : false,
-                },
-                orderBy: {
-                  code: "asc",
-                },
-              }
-            : false,
+    const include: any = {};
+
+    if (includeQuery) {
+      if (includeQuery.includes("province")) {
+        include.province = {
+          omit: {
+            id: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        };
+      }
+
+      if (includeQuery.includes("districts")) {
+        include.districts = {
+          orderBy: { code: "asc" },
+          omit: {
+            id: true,
+            regencyId: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+          include: {},
+        };
+
+        if (includeQuery.includes("villages")) {
+          include.districts.include.villages = {
+            orderBy: { code: "asc" },
+            omit: {
+              id: true,
+              districtId: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          };
         }
-      : undefined;
+      }
+    }
 
     if (!code && !id) return null;
 
@@ -96,6 +119,12 @@ class RegencyRepository {
     return prisma.regencies.findUnique({
       where,
       include,
+      omit: {
+        id: true,
+        provinceId: true,
+        createdAt: true,
+        updatedAt: true,
+      },
     });
   };
 }

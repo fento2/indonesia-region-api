@@ -48,6 +48,12 @@ class VillageRepository {
                     orderBy: {
                         [sortBy]: sortOrder,
                     },
+                    omit: {
+                        id: true,
+                        districtId: true,
+                        createdAt: true,
+                        updatedAt: true,
+                    },
                 }),
                 yield prisma_1.prisma.villages.count({
                     where,
@@ -66,21 +72,31 @@ class VillageRepository {
         this.getDetailVillage = (params) => __awaiter(this, void 0, void 0, function* () {
             const { code, id, include: includeQuery } = params;
             const where = {};
-            const include = includeQuery
-                ? {
-                    district: includeQuery.includes("district")
-                        ? {
-                            include: {
-                                regency: includeQuery.includes("regency")
-                                    ? includeQuery.includes("province")
-                                        ? { include: { province: true } }
-                                        : true
-                                    : undefined,
+            const include = {};
+            if (includeQuery) {
+                if (includeQuery.includes("district")) {
+                    include.district = {
+                        include: {},
+                        omit: { id: true, regencyId: true, createdAt: true, updatedAt: true },
+                    };
+                    if (includeQuery.includes("regency")) {
+                        include.district.include.regency = {
+                            include: {},
+                            omit: {
+                                id: true,
+                                provinceId: true,
+                                createdAt: true,
+                                updatedAt: true,
                             },
+                        };
+                        if (includeQuery.includes("province")) {
+                            include.district.include.regency.include.province = {
+                                omit: { id: true, createdAt: true, updatedAt: true },
+                            };
                         }
-                        : undefined,
+                    }
                 }
-                : undefined;
+            }
             if (!code && !id)
                 return null;
             if (id)
@@ -90,6 +106,12 @@ class VillageRepository {
             return yield prisma_1.prisma.villages.findUnique({
                 where,
                 include,
+                omit: {
+                    id: true,
+                    districtId: true,
+                    createdAt: true,
+                    updatedAt: true,
+                },
             });
         });
     }

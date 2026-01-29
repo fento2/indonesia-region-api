@@ -38,6 +38,12 @@ class DistrictRepository {
         orderBy: {
           [sortBy]: sortOrder,
         },
+        omit: {
+          id: true,
+          regencyId: true,
+          createdAt: true,
+          updatedAt: true,
+        },
       }),
       await prisma.districts.count({
         where,
@@ -59,20 +65,44 @@ class DistrictRepository {
     const { code, id, include: includeQuery } = params;
 
     const where: any = {};
+    const include: any = {};
 
-    const include: any = includeQuery
-      ? {
-          regency: includeQuery.includes("regency")
-            ? includeQuery.includes("province")
-              ? { include: { province: true } }
-              : true
-            : undefined,
+    if (includeQuery) {
+      if (includeQuery.includes("regency")) {
+        include.regency = {
+          omit: {
+            id: true,
+            provinceId: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        };
 
-          villages: includeQuery.includes("villages")
-            ? { orderBy: { code: "asc" } }
-            : undefined,
+        if (includeQuery.includes("province")) {
+          include.regency.include = {
+            province: {
+              omit: {
+                id: true,
+                createdAt: true,
+                updatedAt: true,
+              },
+            },
+          };
         }
-      : undefined;
+      }
+
+      if (includeQuery.includes("villages")) {
+        include.villages = {
+          orderBy: { code: "asc" },
+          omit: {
+            id: true,
+            districtId: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        };
+      }
+    }
 
     if (!code && !id) return null;
 
@@ -82,6 +112,12 @@ class DistrictRepository {
     return await prisma.districts.findUnique({
       where,
       include,
+      omit: {
+        id: true,
+        regencyId: true,
+        createdAt: true,
+        updatedAt: true,
+      },
     });
   };
 }

@@ -13,11 +13,8 @@ describe("feature province test", () => {
       expect(response.body.result.data.length).toBeGreaterThan(0);
 
       expect(response.body.result.data[0]).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
 
       expect(response.body.result.meta).toMatchObject({
@@ -39,11 +36,8 @@ describe("feature province test", () => {
       expect(response.body.result.data.length).toBeGreaterThan(0);
 
       expect(response.body.result.data[0]).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
 
       expect(response.body.result.meta).toMatchObject({
@@ -67,11 +61,8 @@ describe("feature province test", () => {
       expect(response.body.result.data.length).toBeGreaterThan(0);
 
       expect(response.body.result.data[0]).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
 
       expect(response.body.result.meta).toMatchObject({
@@ -95,11 +86,8 @@ describe("feature province test", () => {
       expect(response.body.result.data.length).toBeGreaterThan(0);
 
       expect(response.body.result.data[0]).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
 
       expect(response.body.result.meta).toMatchObject({
@@ -122,11 +110,8 @@ describe("feature province test", () => {
       );
 
       expect(response.body.result.data).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
     });
 
@@ -141,24 +126,17 @@ describe("feature province test", () => {
       );
 
       expect(response.body.result.data).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
         regencies: expect.any(Array),
       });
 
       expect(Array.isArray(response.body.result.data.regencies)).toBe(true);
 
       expect(response.body.result.data.regencies[0]).toMatchObject({
-        id: expect.any(String),
-        provinceId: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
         type: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
         districts: expect.any(Array),
       });
 
@@ -168,12 +146,8 @@ describe("feature province test", () => {
 
       expect(response.body.result.data.regencies[0].districts[0]).toMatchObject(
         {
-          id: expect.any(String),
-          regencyId: expect.any(String),
           code: expect.any(String),
           name: expect.any(String),
-          createdAt: expect.any(String),
-          updatedAt: expect.any(String),
           villages: expect.any(Array),
         },
       );
@@ -187,13 +161,9 @@ describe("feature province test", () => {
       expect(
         response.body.result.data.regencies[0].districts[0].villages[0],
       ).toMatchObject({
-        id: expect.any(String),
-        districtId: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
         postalCode: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
     });
 
@@ -206,11 +176,8 @@ describe("feature province test", () => {
       expect(response.statusCode).toBe(HttpStatus.OK);
 
       expect(response.body.result.data).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
     });
 
@@ -223,24 +190,17 @@ describe("feature province test", () => {
       expect(response.statusCode).toBe(HttpStatus.OK);
 
       expect(response.body.result.data).toMatchObject({
-        id: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
         regencies: expect.any(Array),
       });
 
       expect(Array.isArray(response.body.result.data.regencies)).toBe(true);
 
       expect(response.body.result.data.regencies[0]).toMatchObject({
-        id: expect.any(String),
-        provinceId: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
         type: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
         districts: expect.any(Array),
       });
 
@@ -250,12 +210,8 @@ describe("feature province test", () => {
 
       expect(response.body.result.data.regencies[0].districts[0]).toMatchObject(
         {
-          id: expect.any(String),
-          regencyId: expect.any(String),
           code: expect.any(String),
           name: expect.any(String),
-          createdAt: expect.any(String),
-          updatedAt: expect.any(String),
           villages: expect.any(Array),
         },
       );
@@ -269,13 +225,9 @@ describe("feature province test", () => {
       expect(
         response.body.result.data.regencies[0].districts[0].villages[0],
       ).toMatchObject({
-        id: expect.any(String),
-        districtId: expect.any(String),
         code: expect.any(String),
         name: expect.any(String),
         postalCode: expect.any(String),
-        createdAt: expect.any(String),
-        updatedAt: expect.any(String),
       });
     });
   });
