@@ -163,7 +163,7 @@ Base endpoints:
 | Query     | Type   | Required | Description                               |
 | --------- | ------ | -------- | ----------------------------------------- |
 | `code`    | string | Yes      | Unique region code (example: `11`)        |
-| `include` | string | Yes      | Related data to include (comma separated) |
+| `include` | string | No       | Related data to include (comma separated) |
 
 #### Include Options
 
