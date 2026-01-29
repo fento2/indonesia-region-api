@@ -96,39 +96,24 @@ Base endpoints:
     "message": "list province success",
     "data": [
       {
-        "id": "68f11fce-1a05-45f2-a4e3-14945f28a81b",
         "code": "76",
-        "name": "Sulawesi Barat",
-        "createdAt": "2026-01-27T13:43:37.034Z",
-        "updatedAt": "2026-01-27T13:43:37.034Z"
+        "name": "Sulawesi Barat"
       },
       {
-        "id": "76cb35f8-a7dd-407b-ad75-a6a3033e5137",
         "code": "73",
-        "name": "Sulawesi Selatan",
-        "createdAt": "2026-01-27T13:43:36.592Z",
-        "updatedAt": "2026-01-27T13:43:36.592Z"
+        "name": "Sulawesi Selatan"
       },
       {
-        "id": "cdf699a2-43c4-4e8d-9003-61607a17d790",
         "code": "72",
-        "name": "Sulawesi Tengah",
-        "createdAt": "2026-01-27T13:43:36.448Z",
-        "updatedAt": "2026-01-27T13:43:36.448Z"
+        "name": "Sulawesi Tengah"
       },
       {
-        "id": "090bbfa4-624e-43d2-af4f-6cd9f2804614",
         "code": "74",
-        "name": "Sulawesi Tenggara",
-        "createdAt": "2026-01-27T13:43:36.741Z",
-        "updatedAt": "2026-01-27T13:43:36.741Z"
+        "name": "Sulawesi Tenggara"
       },
       {
-        "id": "5c33be24-ef96-47ba-b031-38877b640522",
         "code": "71",
-        "name": "Sulawesi Utara",
-        "createdAt": "2026-01-27T13:43:36.302Z",
-        "updatedAt": "2026-01-27T13:43:36.302Z"
+        "name": "Sulawesi Utara"
       }
     ],
     "meta": {
@@ -137,7 +122,7 @@ Base endpoints:
       "limit": 5,
       "totalPage": 1
     },
-    "documentation": "See documentation: https://github.com/fento2/indonesia-region-api"
+    "documentation": "See documentation: https://github.com/fento2/indonesia-region-api/tree/main#api-reference"
   }
 }
 ```
@@ -187,39 +172,24 @@ Base endpoints:
   "result": {
     "message": "detail village code: 8102192005 success",
     "data": {
-      "id": "b976d2a6-4b6a-4443-8925-7fc4793f8310",
-      "districtId": "2b1951f4-a567-409f-b8ec-a6e0d15dae34",
       "code": "8102192005",
       "name": "Elaar Lamagorang",
       "postalCode": "97626",
-      "createdAt": "2026-01-27T17:43:48.886Z",
-      "updatedAt": "2026-01-27T17:43:48.886Z",
       "district": {
-        "id": "2b1951f4-a567-409f-b8ec-a6e0d15dae34",
-        "regencyId": "4fcb43e7-6021-4dba-9265-9c6fb95bf252",
         "code": "810219",
         "name": "Kei Kecil Timur Selatan",
-        "createdAt": "2026-01-27T14:03:30.998Z",
-        "updatedAt": "2026-01-27T14:03:30.998Z",
         "regency": {
-          "id": "4fcb43e7-6021-4dba-9265-9c6fb95bf252",
-          "provinceId": "0d60ea76-c367-4bbd-b495-eda948a4b766",
           "code": "8102",
           "name": "Maluku Tenggara",
           "type": "Kabupaten",
-          "createdAt": "2026-01-27T13:44:57.786Z",
-          "updatedAt": "2026-01-27T13:44:57.786Z",
           "province": {
-            "id": "0d60ea76-c367-4bbd-b495-eda948a4b766",
             "code": "81",
-            "name": "Maluku",
-            "createdAt": "2026-01-27T13:43:37.176Z",
-            "updatedAt": "2026-01-27T13:43:37.176Z"
+            "name": "Maluku"
           }
         }
       }
     },
-    "documentation": "See documentation: https://github.com/fento2/indonesia-region-api"
+    "documentation": "See documentation: https://github.com/fento2/indonesia-region-api/tree/main#api-reference"
   }
 }
 ```
