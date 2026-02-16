@@ -17,9 +17,9 @@ class CronController {
     try {
       const isVercelCron = req.headers["x-vercel-cron"];
 
-      if (!isVercelCron) {
-        throw new AppError("Unauthorized", HttpStatus.UNAUTHORIZED);
-      }
+      // if (!isVercelCron) {
+      //   throw new AppError("Unauthorized", HttpStatus.UNAUTHORIZED);
+      // }
       const pingDbFunctions = [
         () => this.provinceRepository.getProvinces({ include: [] }),
         () =>
